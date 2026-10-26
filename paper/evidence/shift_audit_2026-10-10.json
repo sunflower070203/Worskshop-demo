@@ -1,0 +1,76 @@
+{
+  "task": "distinguish competition train rows from test rows using seven telemetry features",
+  "interpretation_limit": "Covariate shift only; test health labels and test F1 are unknown. The bootstrap interval conditions on fixed OOF predictions.",
+  "python": "3.13.6",
+  "python_bits": 64,
+  "platform": "Windows-11-10.0.26200-SP0",
+  "sklearn": "1.8.0",
+  "seed": 20261010,
+  "cv": "5-fold stratified, shuffled; identical folds for both models",
+  "features": [
+    "time_since_launch",
+    "orbital_altitude",
+    "battery_voltage",
+    "solar_panel_temperature",
+    "attitude_control_error",
+    "data_transmission_rate",
+    "thermal_control_status"
+  ],
+  "rows_train": 12000,
+  "rows_test": 3000,
+  "train_sha256": "16a15719bfa662b6d1f047efbcbaee5de13232fbdf52d5a4856933dedf24ccc6",
+  "test_sha256": "70b4478b9dda973fa8a3eaa7cdac6c6114a506a569c17be57e82f2f967bd72e2",
+  "missingness": {
+    "time_since_launch": {
+      "train_rate": 0.015166666666666667,
+      "test_rate": 0.014333333333333333,
+      "difference_test_minus_train": -0.0008333333333333335
+    },
+    "orbital_altitude": {
+      "train_rate": 0.024416666666666666,
+      "test_rate": 0.027333333333333334,
+      "difference_test_minus_train": 0.002916666666666668
+    },
+    "battery_voltage": {
+      "train_rate": 0.034833333333333334,
+      "test_rate": 0.035666666666666666,
+      "difference_test_minus_train": 0.0008333333333333318
+    },
+    "solar_panel_temperature": {
+      "train_rate": 0.04425,
+      "test_rate": 0.048,
+      "difference_test_minus_train": 0.0037500000000000033
+    },
+    "attitude_control_error": {
+      "train_rate": 0.02975,
+      "test_rate": 0.031,
+      "difference_test_minus_train": 0.0012500000000000011
+    },
+    "data_transmission_rate": {
+      "train_rate": 0.0375,
+      "test_rate": 0.04,
+      "difference_test_minus_train": 0.0025000000000000022
+    },
+    "thermal_control_status": {
+      "train_rate": 0.019333333333333334,
+      "test_rate": 0.02266666666666667,
+      "difference_test_minus_train": 0.003333333333333334
+    }
+  },
+  "models": {
+    "median_scaled_logistic": {
+      "oof_auc": 0.5103466111111111,
+      "row_bootstrap_95pct_ci_conditional_on_oof_predictions": [
+        0.49857575694444445,
+        0.5226039513888888
+      ]
+    },
+    "hist_gradient_boosting": {
+      "oof_auc": 0.5007372083333334,
+      "row_bootstrap_95pct_ci_conditional_on_oof_predictions": [
+        0.48918267916666663,
+        0.512170192361111
+      ]
+    }
+  }
+}
